@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - ELEGANCE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Include header -->
+    <div id="header-placeholder"></div>
+
+    <section id="products" class="products">
+        <h2>New Arrivals</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Silk Wrap Dress.jpg" alt="Silk Wrap Dress">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Silk Wrap Dress</h3>
+                    <p class="product-price">Rp 899.000</p>
+                    <a href="produk1.html" class="btn">View Details</a>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Classic Blazer1.jpg" alt="Classic Blazer">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Blazer</h3>
+                    <p class="product-price">Rp 1.299.000</p>
+                    <a href="produk2.html" class="btn">View Details</a>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Pleated Skirt1.jpg" alt="Pleated Skirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pleated Skirt</h3>
+                    <p class="product-price">Rp 699.000</p>
+                    <a href="produk3.html" class="btn">View Details</a>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Cashmere Sweater1.jpg" alt="Cashmere Sweater">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Cashmere Sweater</h3>
+                    <p class="product-price">Rp 1.499.000</p>
+                    <a href="produk4.html" class="btn">View Details</a>
+                </div>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Wide Leg Pants1.jpg" alt="Wide Leg Pants">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Wide Leg Pants</h3>
+                    <p class="product-price">Rp 799.000</p>
+                    <a href="produk5.html" class="btn">View Details</a>
+                </div>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="aset/Silk Blouse1.jpg" alt="Silk Blouse">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Silk Blouse</h3>
+                    <p class="product-price">Rp 649.000</p>
+                    <a href="produk6.html" class="btn">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // JavaScript untuk memuat header dan footer dari folder includes
+        fetch('includes/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+
+        fetch('includes/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Wrap Dress - ELEGANCE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <section class="product-detail">
+        <div class="product-gallery">
+            <div class="thumbnail-list">
+                <img src="aset/Silk Wrap Dress2.jpg" class="thumbnail" alt="Thumbnail 1">
+                <img src="aset/Silk Wrap Dress3.jpg" class="thumbnail" alt="Thumbnail 2">
+            </div>
+            <img src="aset/Silk Wrap Dress.jpg" class="main-image" alt="Main Image">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title">Silk Wrap Dress</h1>
+            <p class="product-price">Rp 899.000</p>
+            <p class="product-description">Elegant silk wrap dress with a body-hugging design, highlighting the feminine side with a luxurious impression. Ideal for special events or just to look more glamorous everyday.</p>
+            <div class="product-specs">
+                <h3 class="specs-title">Specifications</h3>
+                <ul class="specs-list">
+                    <li>Material: Silk</li>
+                    <li>Color: Purple</li>
+                </ul>
+            </div>
+
+            <!-- Size Options -->
+            <div class="size-options">
+                <label onclick="selectSize(this)"><input type="radio" name="size" value="S"> S</label>
+                <label onclick="selectSize(this)"><input type="radio" name="size" value="M"> M</label>
+                <label onclick="selectSize(this)"><input type="radio" name="size" value="L"> L</label>
+            </div>
+        
+            <!-- Quantity Selector -->
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                <input type="number" id="quantity" value="1" min="1" readonly>
+                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+            </div>
+        
+            <!-- Add to Cart Button -->
+            <button class="btn" onclick="addToCart('Silk Wrap Dress', 899000)">Add to Cart</button>
+            <!-- Back Button -->
+            <a href="javascript:history.back()" style="position: absolute; top: 10px; left: 10px; text-decoration: none; color: black;">
+                <i class="fas fa-arrow-left" style="font-size: 24px;"></i>
+            </a>     
+            <a href="cekout.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </a>       
+        </div>
+    </section>
+
+    <script>
+        // Fungsi untuk menambah produk ke keranjang
+        function addToCart(productName, price) {
+            const quantity = parseInt(document.getElementById("quantity").value); // Ambil jumlah produk
+            const selectedSize = document.querySelector('.size-options input:checked')?.value || 'S'; // Default ke ukuran S jika tidak ada yang dipilih
+            
+            const product = {
+                name: productName,
+                price: price,
+                quantity: quantity,
+                size: selectedSize
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            alert(`${productName} (${selectedSize}, ${quantity} pcs) seharga Rp ${price.toLocaleString()} telah ditambahkan ke keranjang!`);
+            updateCartCount(); // Fungsi ini bisa ditambahkan untuk memperbarui jumlah produk di ikon keranjang
+        }
+    
+
+        function selectSize(label) {
+            const sizeLabels = document.querySelectorAll('.size-options label');
+            sizeLabels.forEach(label => label.classList.remove('active'));
+            label.classList.add('active');
+        }
+
+        function changeQuantity(amount) {
+            const quantityInput = document.getElementById("quantity");
+            let currentQuantity = parseInt(quantityInput.value);
+            currentQuantity += amount;
+            if (currentQuantity < 1) {
+                currentQuantity = 1;
+            }
+            quantityInput.value = currentQuantity;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

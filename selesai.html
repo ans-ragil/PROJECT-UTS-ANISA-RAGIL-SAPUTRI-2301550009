@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Terima Kasih - ELEGANCE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Gaya khusus untuk halaman konfirmasi */
+        .confirmation-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .confirmation-container h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-container p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #333;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Thank You!</h1>
+        <p>We will process your order immediately. Thank you for shopping at ELEGANCE.</p>
+        
+        <button onclick="goToHome()" class="home-button">Back to home</button>
+    </div>
+
+    <script>
+        function goToHome() {
+            window.location.href = 'index.html'; // Sesuaikan nama file halaman home jika berbeda
+        }
+    </script>
+</body>
+</html>

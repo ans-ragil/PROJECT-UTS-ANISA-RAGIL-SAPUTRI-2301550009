@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - ELEGANCE</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Tombol Back -->
+    <a href="javascript:history.back()" style="position: absolute; top: 10px; left: 10px; text-decoration: none; color: black;">
+        <i class="fas fa-arrow-left" style="font-size: 24px;"></i>
+    </a>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="checkout-container">
+            <h1>Checkout</h1>
+
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <ul id="order-summary-list"></ul>
+                    <div class="total">
+                        Total: <span id="total-price">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <h2>Payment Methods</h2>
+                    <div class="payment-option">
+                        <input type="radio" id="credit-card" name="payment" value="credit-card" required>
+                        <label for="credit-card">Credit Card</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="bank-transfer" name="payment" value="bank-transfer" required>
+                        <label for="bank-transfer">Bank Transfer</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="cod" name="payment" value="cod" required>
+                        <label for="cod">Cash on Delivery</label>
+                    </div>
+                </div>
+
+                <button type="submit" id="place-order">Place Order</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        // Fungsi untuk menambah produk ke keranjang dan menyimpannya di localStorage
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = { name: name, price: price };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`${name} telah ditambahkan ke keranjang!`);
+            displayOrderSummary(); // Memperbarui Order Summary
+        }
+
+        // Fungsi untuk menghapus item dari keranjang
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayOrderSummary();
+        }
+
+        // Fungsi untuk menampilkan Order Summary di halaman checkout
+        function displayOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderSummaryList = document.getElementById('order-summary-list');
+            const totalPriceElement = document.getElementById('total-price');
+            let total = 0;
+
+            orderSummaryList.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'order-item';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'item-checkbox';
+                checkbox.value = item.price;
+                checkbox.checked = true;
+                checkbox.onchange = updateTotalPrice;
+
+                const itemDetails = document.createElement('div');
+                itemDetails.className = 'item-details';
+                itemDetails.textContent = `${item.name} - Rp ${item.price.toLocaleString('id-ID')}`;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-button';
+                deleteButton.textContent = '×';
+                deleteButton.onclick = (e) => {
+                    e.preventDefault();
+                    removeFromCart(index);
+                };
+
+                li.appendChild(checkbox);
+                li.appendChild(itemDetails);
+                li.appendChild(deleteButton);
+                orderSummaryList.appendChild(li);
+
+                if (checkbox.checked) {
+                    total += Number(item.price);
+                }
+            });
+
+            totalPriceElement.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // Fungsi untuk menghitung ulang total harga berdasarkan item yang dicentang
+        function updateTotalPrice() {
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            let total = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    total += Number(checkbox.value);
+                }
+            });
+
+            document.getElementById('total-price').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // Panggil displayOrderSummary saat halaman checkout dimuat
+        window.onload = displayOrderSummary;
+
+        // Tangani event saat form di-submit
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'selesai.html';
+        });
+    </script>
+</body>
+</html>

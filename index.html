@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEGANCE - Women's Fashion Boutique</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Include header -->
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Elegance</h1>
+            <p>Timeless fashion for the modern woman</p>
+            <a href="produk.html" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Include footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Fungsi untuk memuat konten header dan footer
+        async function loadIncludes() {
+            try {
+                // Memuat header
+                const headerResponse = await fetch('includes/header.html');
+                const headerData = await headerResponse.text();
+                document.getElementById('header-placeholder').innerHTML = headerData;
+
+                // Memuat footer
+                const footerResponse = await fetch('includes/footer.html');
+                const footerData = await footerResponse.text();
+                document.getElementById('footer-placeholder').innerHTML = footerData;
+            } catch (error) {
+                console.error('Error loading includes:', error);
+            }
+        }
+
+        // Memanggil fungsi loadIncludes saat dokumen sudah dimuat
+        document.addEventListener('DOMContentLoaded', loadIncludes);
+    </script>
+</body>
+</html>
